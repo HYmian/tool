@@ -1,6 +1,6 @@
 #! /bin/bash
 
-harbor_endpoint=harbor
+harbor_endpoint=localhost
 harbor_username=admin
 harbor_password=Harbor12345
 harbor_schema=https
@@ -13,8 +13,8 @@ projects=`curl -ksS -u ${harbor_username}:${harbor_password} ${harbor_schema}://
 project_num=`echo ${projects} | jq ". | length"`
 
 echo $projects
-echo -e "#! /bin/bash\n" > pull_$harbor_endpoint.sh
-echo -e "#! /bin/bash\n" > push_$harbor_endpoint.sh
+echo -e "#! /bin/bash" > pull_$harbor_endpoint.sh
+echo -e "#! /bin/bash" > push_$harbor_endpoint.sh
 
 for ((i=0; i<${project_num}; ++i))
 do
@@ -24,13 +24,16 @@ do
   project_name=`echo ${project} | jq '. | getpath(["name"])'`
   project_public=`echo ${project} | jq '. | getpath(["public"])'`
 
-  echo curl -k -X POST -u ${harbor_username}:${harbor_password} ${harbor_schema}://${harbor_endpoint}/api/projects \
-    -H \'accept: application/json\' \
-    -H \'Content-Type: text/plain\' \
-    -d \'{ \
-      \"project_name\": ${project_name}, \
-      \"public\": ${project_public} \
-    }\' >> push_${harbor_endpoint}.sh
+  echo "
+curl -k -X POST -u ${harbor_username}:${harbor_password}
+  ${harbor_schema}://${harbor_endpoint}/api/projects
+  -H 'accept: application/json'
+  -H 'Content-Type: text/plain'
+  -d '{
+    \"project_name\": ${project_name},
+    \"public\": ${project_public}
+  }'
+    " >> push_${harbor_endpoint}.sh
 
   repositories=`curl -ksS -u ${harbor_username}:${harbor_password} ${harbor_schema}://${harbor_endpoint}/api/repositories?project_id=${project_id} | jq '.[] | getpath(["name"])'`
   echo ${repositories}
