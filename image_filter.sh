@@ -61,23 +61,19 @@ while getopts ":d:p:r:t:x:y:z:w:o:" opt; do
   esac
 done
 
-retag() {
-  echo "docker tag $1 $2"
-}
-
 filter="^(${image_domain})/(${image_project})/(${image_repository}):(${image_tag})$"
 echo ${filter}
 
 local_images=`docker images --format '{{ .Repository }}:{{ .Tag }}'`
 for local_image in $local_images
 do
-	if [[ $local_image =~ $filter ]]; then
+  if [[ $local_image =~ $filter ]]; then
     this_domain=""
     this_project=""
     this_repository=""
     this_tag=""
 
-		echo $local_image
+    echo $local_image
     # echo ${#BASH_REMATCH[@]}
     # echo ${BASH_REMATCH[1]}
     # echo ${BASH_REMATCH[2]}
@@ -121,5 +117,5 @@ do
     elif [ "${operation}" = "rmi" ]; then
       echo docker rmi ${image} >> filter_rmi.sh
     fi
-	fi
+  fi
 done
