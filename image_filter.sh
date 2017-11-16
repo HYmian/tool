@@ -11,6 +11,7 @@ new_repository=""
 new_tag=""
 
 operation=""
+echo -n > /tmp/mian_image_filter_output
 
 while getopts ":d:p:r:t:x:y:z:w:o:" opt; do
   case $opt in
@@ -64,6 +65,7 @@ done
 filter="^(${image_domain})/(${image_project})/(${image_repository}):(${image_tag})$"
 echo ${filter}
 
+output=""
 local_images=`docker images --format '{{ .Repository }}:{{ .Tag }}'`
 for local_image in $local_images
 do
@@ -73,12 +75,9 @@ do
     this_repository=""
     this_tag=""
 
-    echo $local_image
+    # echo $local_image
     # echo ${#BASH_REMATCH[@]}
-    # echo ${BASH_REMATCH[1]}
-    # echo ${BASH_REMATCH[2]}
-    # echo ${BASH_REMATCH[3]}
-    # echo ${BASH_REMATCH[4]}
+
     if [ -z "${new_domain}" ]; then
       this_domain=${BASH_REMATCH[1]}
     else
@@ -107,7 +106,7 @@ do
     new_image=${this_domain}/${this_project}/${this_repository}:${this_tag}
 
     if [ -z "${operation}" ]; then
-      echo "${image} | ${new_image}" 
+      echo "${image} | ${new_image}" >> /tmp/mian_image_filter_output
     elif [ "${operation}" = "pull" ]; then
       echo docker pull ${new_image} >> filter_pull.sh
     elif [ "${operation}" = "push" ]; then
@@ -119,3 +118,5 @@ do
     fi
   fi
 done
+
+column -tx -o '|' -s '|' /tmp/mian_image_filter_output
