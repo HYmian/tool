@@ -32,12 +32,12 @@ dnf makecache -y
 
 # install common tools
 dnf install -y \
-	kde-l10n-zh_CN \
+	kcm-fcitx \
+	fcitx-cloudpinyin \
 	vim \
 	git \
 	docker \
 	kubectl \
-	steam \
 	vlc \
 	libreoffice \
 	code \
