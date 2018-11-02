@@ -7,18 +7,6 @@ sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
 # add repo
 
-# kubectl
-echo "add kubernetes repo"
-cat <<EOF > /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-exclude=kube*
-EOF
 # vs code
 echo "add vs code repo"
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -36,8 +24,6 @@ dnf install -y \
 	fcitx-cloudpinyin \
 	vim \
 	git \
-	docker \
-	kubectl \
 	vlc \
 	libreoffice \
 	code \
@@ -46,6 +32,8 @@ dnf install -y \
 # install devlop tools
 dnf install -y \
 	golang golang-docs \
+	docker \
+	kubernetes-client \
 	java-1.8.0-openjdk-devel
 
 # chrome
