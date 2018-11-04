@@ -23,6 +23,7 @@ dnf install -y \
 	kcm-fcitx \
 	fcitx-cloudpinyin \
 	vim \
+	goldendict \
 	git \
 	vlc \
 	libreoffice \
@@ -42,4 +43,6 @@ dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x
 
 # install oh-my-zsh
 echo "install oh-my-zsh"
-dnf install zsh -y && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+dnf install zsh -y && runuser -l mian -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+mv env.zsh ~/.oh-my-zsh/custom/env.zsh
