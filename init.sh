@@ -25,6 +25,7 @@ dnf install -y \
 	vim \
 	goldendict \
 	git \
+	nethogs \
 	vlc \
 	libreoffice \
 	code \
