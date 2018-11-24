@@ -26,6 +26,10 @@ dnf install -y \
 	goldendict \
 	git \
 	nethogs \
+	# for google driver online account
+	kaccounts-providers \
+	kio-gdrive \
+	# end
 	vlc \
 	libreoffice \
 	code \
@@ -36,7 +40,8 @@ dnf install -y \
 	golang golang-docs \
 	docker \
 	kubernetes-client \
-	java-1.8.0-openjdk-devel
+	java-1.8.0-openjdk-devel \
+	nodejs-typescript
 
 # chrome
 echo "install chrome"
