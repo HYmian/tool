@@ -42,17 +42,17 @@ credentials:
           secret: "{AQAAABAAAANwdO2fmPtSy47ODXB4WZGHl/+TPFSvwg/frhTt8ME3137KuercQ/CXjOrP3d/kTMOAihlLOV1PBsLqhylrq88etFVqbmJfn4+wBGZGTQP/pb/rLfKpG0cj9TPRy7zwfcLBaKpTkvVfpAHzn7bF/bRTUdN2LIwiPEy9ZH6C2QOklIJqBFJLXxvykIHRwy0QR0sDQg1O+JTgmr3fxqaevnAbJKmD5l0dmsxA8kv3dDqN/3DaX+yreXhJsAny7uYUUvJLdGTEDbc3z7/nxTeB/QtQdIsT0Ppe56zd4GV4WdV+OrXKkfSB4o5BXwFFvZv7hrxjAXV6+hpmCCF0rKRFYLEpHTzO25LMmBxl7O0M0iXWWh/ObrRWV9P1Adm9pNqTvpXcFRHiLMWDRiP80tZMBiiPgKKJFMByIS7gNuAYuX6n3XPdE75HNZkreZJIPRemE78nqIoup/sSRSLC7wPbtsjM7qp9MbtG1fbCo93WOU3CmyofINAuYavv36++Gb0xhMWppTUrJJ1xLmE5bKbFZOW9b/cF1AFFDQnmC+8zYJvAF5GH8OWNMgxFK+PEz37h6tlWyN5ma/KtwY1sNvqN2UohBt320YXzTpF45i0UvZke5POhUROj7XZi947WzBVEc3+zCfnuBBM9lJaAQCTQEK2w5ZTrYkgrwHEaCoG59YdeKX2mNE8BeJ/rFIiS4k12aFym7k45Mx/CEKbkjg4AE/thrnEkllM4X34efy8TVsSHM7jLAAIpp4pflMjYhOJpnwnlNoKcXvIXm2mjd2PQlwgumSS5C2Q9xEhuztYtZcUNFSu9oqUYx0T5xRzGKsTNbdO39V24lDopTi62QsXdb1ljxmUqQnPsKAxAfdLyGbhsKkRJzoneF6qqlC54GR+Xqp4wAg/hxnn5Et0ANZ9RKkbwxe3ihGch34+EDqe9TMcPS1WRocIoGvmo6Xu/AQkoc1P8RY0A34E1BHZRZo4aHowilfHemJOg51xeHhNtvkgTqnVF+d1wlq1cfULG1ndX/ZUQfN7nflhU/KSB2Iw5c3AM550PYznm9HGJc/OOVAOhd7PdD97IE46qAt9V9a61HjcgKFpaIMsXUgK0D0IVEVX/ERgp0I9rKVK44xVHn3pPMTUTHBSi0YdG/t0ORAzBqGwwlLSkYGvARmP8RfStgI0sOxlGynF1b/OfoUCebY6PRBk=}"
 jobs:
 - script: >
-  pipelineJob("cacs") {
-    definition {
-      cpsScm {
-        scriptPath 'Jenkinsfile'
-        scm {
-          git {
-            remote { url 'https://github.com/mkrzyzanowski/blog-001.git' }
-            branch '*/docker-for-mac'
-            extensions {}
+    pipelineJob("cacs") {
+      definition {
+        cpsScm {
+          scriptPath 'Jenkinsfile'
+          scm {
+            git {
+              remote { url 'https://github.com/mkrzyzanowski/blog-001.git' }
+              branch '*/docker-for-mac'
+              extensions {}
+            }
           }
         }
       }
     }
-  }
