@@ -3,12 +3,6 @@ plugins:
   - id: "default"
     url: "https://updates.jenkins.io/update-center.json"
 jenkins:
-  agentProtocols:
-  - "JNLP4-connect"
-  - "Ping"
-  authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
   clouds:
   - kubernetes:
       containerCapStr: "10"
@@ -18,20 +12,8 @@ jenkins:
       maxRequestsPerHostStr: "32"
       name: "kubernetes"
       namespace: "default"
-      serverUrl: "https://kubernetes.default.svc.cluster.local:443"
+      serverUrl: "https://kubernetes.default.svc.cluster.local"
       skipTlsVerify: true
-  disableRememberMe: false
-  mode: NORMAL
-  numExecutors: 0
-  primaryView:
-    all:
-      name: "all"
-  quietPeriod: 5
-  scmCheckoutRetryCount: 0
-  slaveAgentPort: 50000
-  views:
-  - all:
-      name: "all"
 credentials:
   system:
     domainCredentials:
