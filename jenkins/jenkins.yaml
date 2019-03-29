@@ -13,7 +13,7 @@ jenkins:
       maxRequestsPerHostStr: "32"
       name: "kubernetes"
       namespace: "default"
-      serverUrl: "https://kubernetes.svc.cluster.local.default"
+      serverUrl: "https://kubernetes.default.svc.cluster.local"
 credentials:
   system:
     domainCredentials:
